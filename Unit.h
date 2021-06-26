@@ -1,18 +1,14 @@
 #pragma once
 
 /*
-* Класс Unit представляет собой макет юнита, наделенного следующими характеристиками:
-*	1) Позиция Position на Поле(см. класс Field)
-*	2) Направление взгляда Direction
-*	3) Имя Name
+* Класс представляет собой тип объекта юнит
+* TODO: дополнить описание
 */
-
-#include <utility>
 #include <memory>
 
-#include "UnitView.h"
 #include "UnitManager.h"
 #include "Object.h"
+#include "ObjectView.h"
 #include "Types.h"
 
 class Unit : public Object
@@ -28,7 +24,7 @@ public:
 	void setVisibleCount(const VisibleCountT&);
 	VisibleCountT getVisibleCount() const;
 
-	// данный метод был перенесен из класса UnitManager, потому так логичнее
+	// данный метод был перенесен из класса UnitManager, потому что так логичнее
 	const bool checkDirection(const Unit& _other) const;
 
 	virtual ~Unit() = default;

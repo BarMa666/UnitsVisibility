@@ -1,8 +1,5 @@
 #include "Unit.h"
-#include "UnitManager.h"
 #include "UnitSettings.h"
-#include "ObservationSubject.h"
-#include <iostream>
 
 Unit::Unit(const NameT& _name, const PositionT& _position, const DirectionT& _direction, std::unique_ptr<ObjectView>&& _view)
 	: Object(_position, _name, std::move(_view))
@@ -28,7 +25,7 @@ void Unit::setVisibleCount(const VisibleCountT& _count)
 
 const bool Unit::checkDirection(const Unit& _other) const
 {
-	auto positional_vector = position() - _other.position();
+	auto positional_vector = _other.position() - position();
 	return direction().angle(positional_vector) <= (UnitSettings::instance().getDegreesVisibility() / 2);
 }
 

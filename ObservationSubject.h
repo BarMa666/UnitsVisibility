@@ -1,6 +1,10 @@
 #pragma once
+
+/*
+* Класс помогает отслеживать события и синхронизировать ответные реакции на них в разных частях программы
+*/
+
 #include "Types.h"
-#include <map>
 #include <functional>
 
 class Unit;
@@ -8,7 +12,7 @@ class Unit;
 class ObservationSubject
 {
 public:
-	using ActionNameT = std::wstring;
+	using ActionNameT = tstring;
 	using ActionT = std::function<void(Unit const*)>;
 
 	static void subscribe(const ActionNameT& _action_name, void* _observer, ActionT _action);

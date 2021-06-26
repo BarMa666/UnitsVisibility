@@ -2,7 +2,6 @@
 #include "Unit.h"
 #include "FieldView.h"
 #include "ObservationSubject.h"
-#include <algorithm>
 
 Field::Field()
 {
@@ -22,6 +21,11 @@ Field::Field()
 		{
 			freeCell(static_cast<int>(_unit->position().x()), static_cast<int>(_unit->position().y()));
 		});
+}
+
+Field::~Field()
+{
+	ObservationSubject::unsubscribe(this);
 }
 
 void Field::setCell(Object const* _object)
@@ -44,42 +48,9 @@ void Field::freeCell(CellT _x, CellT _y)
 	}
 }
 
-// TODO возможная оптимизация - создание отдельного вектора с указателями на юниты, 
-// при запросе возвращать его, а не создавать новый
-std::vector<Unit const*> Field::getUnits() const
+void Field::show() const
 {
-	std::vector<Unit const*> res;
-	for (auto w = 0; w < FIELD_WIDTH; ++w)
-	{
-		for (auto h = 0; h < FIELD_HEIGHT; ++h)
-		{
-			if (auto unit = dynamic_cast<Unit const*>(m_field[w][h]))
-			{
-				res.push_back(unit);
-			}
-		}
-	}
-	auto func = [](auto const& _lhs, auto const& _rhs)
-	{
-		return _lhs->name() < _rhs->name();
-	};
-	sort(res.begin(), res.end(), func);
-	return res;
-}
-
-void Field::show()
-{
-	// UNDONE вынести отображение в отдельный класс FieldView
-	for (auto w = 0; w < FIELD_WIDTH; ++w)
-	{
-		for (auto h = 0; h < FIELD_HEIGHT; ++h)
-		{
-			if (auto unit = dynamic_cast<const Unit*>(m_field[w][h]))
-			{
-				unit->show();
-			}
-		}
-	}
+	FieldView::show(this);
 }
 
 bool Field::checkBorders(CellT _x, CellT _y) const
@@ -88,7 +59,7 @@ bool Field::checkBorders(CellT _x, CellT _y) const
 		&& _y <= FIELD_HEIGHT_HALF && _y >= (-1) * FIELD_HEIGHT_HALF;
 }
 
-void Field::convertBorders(OUT CellT& _x, OUT CellT& _y)
+void Field::convertBorders(OUT CellT& _x, OUT CellT& _y) const
 {
 	_x += FIELD_WIDTH_HALF;
 	_y += FIELD_HEIGHT_HALF;

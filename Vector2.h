@@ -19,6 +19,8 @@ public:
 	Vector2 operator-(const Vector2& _other) const;
 	Vector2 operator+(const Vector2& _other) const;
 private:
+	CoordT _acos(CoordT _val) const;
+
 	CoordT m_x;
 	CoordT m_y;
 };

@@ -1,5 +1,6 @@
 #include "UnitManager.h"
 #include "UnitSettings.h"
+#include "UnitVisibilityTester.h"
 #include "ObservationSubject.h"
 #include "Unit.h"
 #include <algorithm>
@@ -16,25 +17,26 @@ UnitManager& UnitManager::instance()
 
 void UnitManager::createUnit(const NameT& _name, const PositionT& _position, const DirectionT& _direction)
 {
-    auto unit = Unit::create(_name, _position, _direction);
-    add(std::move(*(unit)));
+    add(std::move(*(Unit::create(_name, _position, _direction))));
 }
 
-void UnitManager::calcutale()
+void UnitManager::update()
 {
-    auto first = m_units.begin();
-    while (first != m_units.end())
-    {
-        auto res = std::count_if(m_units.cbegin(), m_units.cend(), [first, this](auto& _elem)
-            {
-                if (!(*first == _elem))
+    std::for_each(m_units.begin(), m_units.end(), [this](auto& _unit)
+        {
+            auto res = std::count_if(m_units.cbegin(), m_units.cend(), [&_unit, this](auto& _elem)
                 {
-                    return checkVisibility(*first, _elem);
-                }
-                return false;
-            });
-        first++->setVisibleCount(res);
-    }
+                    if (!(_unit == _elem))
+                    {
+                        return checkVisibility(_unit, _elem);
+                    }
+                    return false;
+                });
+            _unit.setVisibleCount(res);
+#ifdef _TEST
+            UnitVisibilityTester::instance().add(_unit.name(), res);
+#endif             
+        });
 }
 
 bool UnitManager::checkVisibility(const Unit& _lhs, const Unit& _rhs) const

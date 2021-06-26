@@ -19,18 +19,15 @@
     <Filter Include="Исходные файлы\Utility">
       <UniqueIdentifier>{35754647-f479-40f0-8993-958834de5eaf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Исходные файлы\Field">
+      <UniqueIdentifier>{2640b88b-b8e5-4217-a978-77acdb7cd03b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Исходные файлы\Core">
+      <UniqueIdentifier>{3272c67f-eb40-4596-b3ad-7d1767d6bb0f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Field.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="Application.cpp">
-      <Filter>Исходные файлы</Filter>
-    </ClCompile>
-    <ClCompile Include="FieldView.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
     <ClCompile Include="Unit.cpp">
@@ -51,8 +48,23 @@
     <ClCompile Include="UnitView.cpp">
       <Filter>Исходные файлы\Unit</Filter>
     </ClCompile>
+    <ClCompile Include="Field.cpp">
+      <Filter>Исходные файлы\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="FieldView.cpp">
+      <Filter>Исходные файлы\Field</Filter>
+    </ClCompile>
+    <ClCompile Include="Application.cpp">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClCompile>
     <ClCompile Include="Object.cpp">
-      <Filter>Исходные файлы</Filter>
+      <Filter>Исходные файлы\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="UnitVisibilityTester.cpp">
+      <Filter>Исходные файлы\Unit</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectView.cpp">
+      <Filter>Исходные файлы\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -65,15 +77,6 @@
     <ClInclude Include="UnitSettings.h">
       <Filter>Исходные файлы\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="Application.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="Field.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
-    <ClInclude Include="FieldView.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="ObservationSubject.h">
       <Filter>Исходные файлы\Utility</Filter>
     </ClInclude>
@@ -83,11 +86,26 @@
     <ClInclude Include="UnitView.h">
       <Filter>Исходные файлы\Unit</Filter>
     </ClInclude>
-    <ClInclude Include="Object.h">
-      <Filter>Исходные файлы</Filter>
-    </ClInclude>
     <ClInclude Include="Vector2.h">
       <Filter>Исходные файлы\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Field.h">
+      <Filter>Исходные файлы\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="FieldView.h">
+      <Filter>Исходные файлы\Field</Filter>
+    </ClInclude>
+    <ClInclude Include="Application.h">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>Исходные файлы\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="UnitVisibilityTester.h">
+      <Filter>Исходные файлы\Unit</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectView.h">
+      <Filter>Исходные файлы\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

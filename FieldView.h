@@ -10,6 +10,6 @@ class FieldView
 {
 public:
 	// отображает всех юнитов на поле
-	static void show(Field* _field);
+	static void show(const Field* _field);
 };
 

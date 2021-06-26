@@ -86,7 +86,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_TEST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
     </ClCompile>
     <Link>
@@ -143,7 +143,9 @@
     <ClCompile Include="Field.cpp" />
     <ClCompile Include="FieldView.cpp" />
     <ClCompile Include="Object.cpp" />
+    <ClCompile Include="ObjectView.cpp" />
     <ClCompile Include="ObservationSubject.cpp" />
+    <ClCompile Include="UnitVisibilityTester.cpp" />
     <ClCompile Include="UnitSettings.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Unit.cpp" />
@@ -156,7 +158,9 @@
     <ClInclude Include="Field.h" />
     <ClInclude Include="FieldView.h" />
     <ClInclude Include="Object.h" />
+    <ClInclude Include="ObjectView.h" />
     <ClInclude Include="ObservationSubject.h" />
+    <ClInclude Include="UnitVisibilityTester.h" />
     <ClInclude Include="UnitSettings.h" />
     <ClInclude Include="Types.h" />
     <ClInclude Include="Unit.h" />

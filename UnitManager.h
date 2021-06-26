@@ -1,7 +1,7 @@
 #pragma once
 
 /*
-* Класс UnitManager отвечает за взаимодействие между юнитами(проверяет видимость напр.)
+* Класс отвечает за взаимодействие между юнитами(проверяет видимость или столкновения напр.)
 */
 
 #include "Types.h"
@@ -26,9 +26,7 @@ public:
 	UnitManager(UnitManager&&) = delete;
 	UnitManager& operator=(UnitManager&&) = delete;
 
-	void calcutale();
-
-	void add(Unit&& _unit);
+	void update();
 
 	~UnitManager();
 
@@ -39,6 +37,8 @@ protected:
 	bool checkVisibility(const Unit& _lhs, const Unit& _rhs) const;
 	// проверяет дистанцию между двумя юнитами
 	bool checkDistance(const Unit& _lhs, const Unit& _rhs) const;
+
+	void add(Unit&& _unit);
 
 public:
 	UnitCollectionT m_units;

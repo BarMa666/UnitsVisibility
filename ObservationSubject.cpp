@@ -1,5 +1,4 @@
 #include "ObservationSubject.h"
-#include <algorithm>
 
 std::multimap <ObservationSubject::ActionNameT, std::pair<void*, ObservationSubject::ActionT>> ObservationSubject::m_map;
 
@@ -15,7 +14,7 @@ void ObservationSubject::unsubscribe(const ActionNameT& _action_name, void* _obs
 {
 	for (auto&& it : m_map)
 	{
-		if (it.first == _action_name && it.second.first == _observer)
+		if (it.second.first && it.first == _action_name && it.second.first == _observer)
 		{
 			m_map.erase(it.first);
 		}
@@ -24,12 +23,13 @@ void ObservationSubject::unsubscribe(const ActionNameT& _action_name, void* _obs
 
 void ObservationSubject::unsubscribe(void* _observer)
 {
-	for (auto&& it : m_map)
+	for (auto iter = m_map.begin(); iter != m_map.end();)
 	{
-		if (it.second.first == _observer)
+		if (iter->second.first && iter->second.first == _observer)
 		{
-			m_map.erase(it.first);
+			iter = m_map.erase(iter);
 		}
+		else ++iter;
 	}
 }
 
@@ -37,7 +37,7 @@ void ObservationSubject::invoke(const ActionNameT& _action_name, Unit const* _un
 {
 	for (auto&& it : m_map)
 	{
-		if (it.first == _action_name)
+		if (it.second.first && it.first == _action_name)
 		{
 			it.second.second(_unit);
 		}
